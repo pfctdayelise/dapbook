@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OpenLayers Example</title>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script src="http://openlayers.org/api/OpenLayers.js"></script> 
+    <link rel="stylesheet" href="http://openlayers.org/dev/theme/default/style.css" type="text/css">
+    <link rel="stylesheet" href="http://openlayers.org/dev/examples/style.css" type="text/css">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+var map, openlayer, osmlayer, layerSST, layerWSPD, layerSLP, layerAIRT;
+    function init(){
+
+    map = new OpenLayers.Map("map", {
+    controls: [
+            new OpenLayers.Control.LayerSwitcher(),
+            new OpenLayers.Control.PanZoomBar(),
+            new OpenLayers.Control.Attribution(),
+            new OpenLayers.Control.MousePosition(),
+            new OpenLayers.Control.Navigation(),
+        ],
+    });
+
+    openlayer = new OpenLayers.Layer.WMS( "OpenLayers",
+                "http://vmap0.tiles.osgeo.org/wms/vmap0", {layers: 'basic'});
+
+    osmlayer = new OpenLayers.Layer.WMS("OpenStreetMap",
+                "http://maps.opengeo.org/geowebcache/service/wms", {layers: 'openstreetmap', 'format': 'image/png'});
+    
+    layerSST = new OpenLayers.Layer.WMS(
+    "Sea surface temperature", "http://test.pydap.org/coads.nc.wms?SST[0]",
+    {
+        layers: "SST",
+        transparent: "true",
+        format: "image/png",
+    },
+    {isBaseLayer: false}
+    );
+
+    layerWSPD = new OpenLayers.Layer.WMS(
+    "Wind speed", "http://test.pydap.org/coads.nc.wms?WSPD[0]",
+    {
+        layers: "WSPD",
+        transparent: "true",
+        format: "image/png",
+    },
+    {isBaseLayer: false}
+    );
+
+    layerAIRT = new OpenLayers.Layer.WMS(
+    "Air temperature", "http://test.pydap.org/coads.nc.wms?AIRT[0]",
+    {
+        layers: "AIRT",
+        transparent: "true",
+        format: "image/png",
+    },
+    {isBaseLayer: false}
+    );
+
+    layerSLP = new OpenLayers.Layer.WMS(
+    "Sea level pressure", "http://test.pydap.org/coads.nc.wms?SLP[0]",
+    {
+        layers: "SLP",
+        transparent: "true",
+        format: "image/png",
+    },
+    {isBaseLayer: false}
+    );
+
+
+map.addLayers([osmlayer, openlayer, layerSST, layerWSPD, layerSLP, layerAIRT]);
+map.setCenter(new OpenLayers.LonLat(0, 0), 2);
+}
+    </script>
+
+</head>
+<body onload='init();'>
+    <div id="map" style="width:800px; height: 600px"></div>
+</body>
+</html>
