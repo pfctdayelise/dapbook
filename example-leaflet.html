@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet Example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.css" />
+    <!--[if lte IE 8]>
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.ie.css" />
+	<![endif]-->
+</head>
+<body>
+    <div id="map" style="width:800px; height: 600px"></div>
+    <!-- Note leaflet is pre-1.0 so the API may break in future versions. -->
+    <script src="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+
+      var map = L.map('map', {
+      // the pydap wms response is in EPSG 4326
+      crs: L.CRS.EPSG4326
+      }).setView([-40.8, 147], 2);             
+
+      // create the default layer
+      var openstreetmap = L.tileLayer.wms('http://maps.opengeo.org/geowebcache/service/wms', {
+          layers: 'openstreetmap',
+          format: 'image/png',
+          attribution: 'OpenStreetMap via opengeo.org',
+      });                                                                  
+
+      // create pydap layer; note that in this example I'm only
+      // loading SST from time instant zero (ie, January)
+      var sst = L.tileLayer.wms("http://test.pydap.org/coads.nc.wms?SST[0]", {                  
+      layers: 'SST',                                                              
+      format: 'image/png',                                                        
+      transparent: true,                                                          
+      attribution: "test.pydap.org"  
+      });
+      var wspd = L.tileLayer.wms("http://test.pydap.org/coads.nc.wms?WSPD[0]", {                  
+      layers: 'WSPD',                                                              
+      format: 'image/png',                                                        
+      transparent: true,                                                          
+      attribution: "test.pydap.org"  
+      });
+      var airt = L.tileLayer.wms("http://test.pydap.org/coads.nc.wms?AIRT[0]", {                  
+      layers: 'AIRT',                                                              
+      format: 'image/png',                                                        
+      transparent: true,                                                          
+      attribution: "test.pydap.org"  
+      });
+      var slp = L.tileLayer.wms("http://test.pydap.org/coads.nc.wms?SLP[0]", {                  
+      layers: 'SLP',                                                              
+      format: 'image/png',                                                        
+      transparent: true,                                                          
+      attribution: "test.pydap.org"  
+      });
+
+      var baseMaps = {
+          "OpenStreetMap": openstreetmap,
+      };
+      var overlayMaps = {
+          "Sea surface temperature": sst,
+          "Wind speed": wspd,
+          "Air temperature": airt,
+          "Sea level pressure": slp,
+      };
+      openstreetmap.addTo(map);
+      sst.addTo(map);
+      L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+        var popup = L.popup();
+
+        function onMapClick(e) {
+            popup
+                .setLatLng(e.latlng)
+                .setContent(e.latlng.toString())
+                .openOn(map);
+        
+            getSample(e.latlng);
+        }
+
+        map.on('click', onMapClick);
+
+    </script>
+</body>
+</html>
