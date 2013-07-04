@@ -1,0 +1,42 @@
+<html xmlns:py="http://genshi.edgewall.org/">
+<head>
+    <title>OpenLayers Example</title>
+    <script src="http://openlayers.org/api/OpenLayers.js"></script> 
+    <link rel="stylesheet" href="http://openlayers.org/dev/theme/default/style.css" type="text/css" />
+    <link rel="stylesheet" href="http://openlayers.org/dev/examples/style.css" type="text/css" />
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+    var map, openlayer;
+    function init(){
+        map = new OpenLayers.Map("map", {
+        controls: [
+            new OpenLayers.Control.LayerSwitcher(),
+            new OpenLayers.Control.PanZoomBar(),
+            new OpenLayers.Control.Attribution(),
+            new OpenLayers.Control.MousePosition(),
+            new OpenLayers.Control.Navigation(),
+            ],
+        });
+        openlayer = new OpenLayers.Layer.WMS("OpenLayers WMS",
+                "http://maps.opengeo.org/geowebcache/service/wms", {layers: 'openstreetmap', 'format': 'image/png'});
+        map.addLayer(openlayer);
+        <py:for each="(layerid, layername, layerindex) in layers">
+            map.addLayer(new OpenLayers.Layer.WMS(
+                "${layername}",
+                "${wmsserverurl}?${layerid}[${layerindex}]",
+                {
+                    layers: "${layerid}",
+                    transparent: "true",
+                    format: "image/png",
+                },
+                {   isBaseLayer: false,
+                }));
+        </py:for>
+        map.setCenter(new OpenLayers.LonLat(${centerlon}, ${centerlat}), ${initialzoom});
+        }
+    </script>
+</head>
+<body onload='init();'>
+    <div id="map" style="width: ${mapwidth}px; height: ${mapheight}px"></div>
+</body>
+</html>
