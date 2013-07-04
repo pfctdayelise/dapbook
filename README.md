@@ -15,7 +15,7 @@ Dependencies:
 * all (to run notebooks) - ipython, tornado, pyzmq
 * readingdatafrompydap.ipynb - pydap only
 * embeddingmap-simple.ipynb - can be run without any further dependencies (as in nbviewer above)
-* embeddingmap-dynamic.py - requires pydap, pydap.handlers.netcdf, pydap.responses.wms
+* embeddingmap-dynamic.ipynb - requires pydap, pydap.handlers.netcdf, pydap.responses.wms
 
 
 Pydap uses Genshi which is why my template is in Genshi. If you don't intend to run a local Pydap server and you don't want to install it, you could just install Genshi. Or your favourite templating library, and make a template for that.
