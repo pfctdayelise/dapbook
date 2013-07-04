@@ -21,3 +21,5 @@ Dependencies:
 Pydap uses Genshi which is why my template is in Genshi. If you don't intend to run a local Pydap server and you don't want to install it, you could just install Genshi. Or your favourite templating library, and make a template for that.
 
 The data in my examples is a sample grid available from the Bureau of Meteorology. See the [Australian Digital Forecast Database](http://www.bom.gov.au/catalogue/data-feeds.shtml) for more information (and to freely download).
+
+Inspired to make your own WMS-ish app and do the map tile generation yourself? Check out [leafvis](https://github.com/nfaggian/leafvis) :)
