@@ -5,7 +5,7 @@ Examples of integrated [Pydap](http://www.pydap.org/) (OPeNDAP server) with [WMS
 
 * [A simple example of Pydap WMS data integrated with OpenStreetMap/OpenLayers](https://rawgithub.com/pfctdayelise/dapbook/master/example-openlayers.html).
 * [Same data with OpenStreetMap/Leaflet](https://rawgithub.com/pfctdayelise/dapbook/master/example-leaflet.html).
-* [OpenLayers map displayed in the IPython notebook](http://nbviewer.ipython.org/urls/raw.github.com/pfctdayelise/dapbook/master/embeddingmap-simple.ipynb).
+* [Both maps displayed in the IPython notebook](http://nbviewer.ipython.org/urls/raw.github.com/pfctdayelise/dapbook/master/embeddingmap-simple.ipynb).
 
 `dapbook.py` and `template.html` can be used together to easily embed map data from Pydap WMS servers into your IPython notebooks. They can read from a remote server or local.
 
