@@ -1,7 +1,7 @@
 dapbook
 =======
 
-Examples of integrated [Pydap](http://www.pydap.org/) (OPeNDAP server) with [WMS](http://www.pydap.org/responses.html#web-map-service) into the [IPython Notebook](http://ipython.org/notebook.html). Check out [the slides](https://github.com/pfctdayelise/dapbook/raw/master/slides.pdf) for a more verbose explanation.
+Examples of integrated [Pydap](http://www.pydap.org/) (OPeNDAP server) with [WMS](http://www.pydap.org/responses.html#web-map-service) into the [IPython Notebook](http://ipython.org/notebook.html). Check out [the slides](https://github.com/pfctdayelise/dapbook/raw/master/slides.pdf) (also [on Slideshare](http://www.slideshare.net/pfctdayelise/slides-24141056)) for a more verbose explanation.
 
 * [A simple example of Pydap WMS data integrated with OpenStreetMap/OpenLayers](https://rawgithub.com/pfctdayelise/dapbook/master/example-openlayers.html).
 * [Same data with OpenStreetMap/Leaflet](https://rawgithub.com/pfctdayelise/dapbook/master/example-leaflet.html).
